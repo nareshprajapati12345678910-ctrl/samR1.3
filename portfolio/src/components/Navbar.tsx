@@ -4,7 +4,6 @@ import { Menu, Moon, Sun, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 import TeamMembers from "@/components/sections/TeamMembers";
-import Toolkit from "@/components/sections/Toolkit";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -12,7 +11,6 @@ const navLinks = [
   { name: "Portfolio", href: "#portfolio" },
   { name: "Showcase", href: "#showcase" },
   { name: "Team", href: "#team" },
-  { name: "Toolkit", href: "#toolkit" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -20,7 +18,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [modalType, setModalType] = useState<"team" | "toolkit" | null>(null);
+  const [modalType, setModalType] = useState<"team" | null>(null);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -47,10 +45,6 @@ export default function Navbar() {
       setModalType("team");
       return;
     }
-    if (href === "#toolkit") {
-      setModalType("toolkit");
-      return;
-    }
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -67,8 +61,8 @@ export default function Navbar() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-            ? "border-b border-border bg-background/90 py-4 backdrop-blur-md"
-            : "bg-transparent py-6"
+          ? "border-b border-border bg-background/90 py-4 backdrop-blur-md"
+          : "bg-transparent py-6"
           }`}
       >
         <div className="container mx-auto flex items-center justify-between px-6 md:px-12">
@@ -142,7 +136,6 @@ export default function Navbar() {
       </header>
 
       <TeamMembers isOpen={modalType === "team"} onClose={closeModal} />
-      <Toolkit isOpen={modalType === "toolkit"} onClose={closeModal} />
     </>
   );
 }

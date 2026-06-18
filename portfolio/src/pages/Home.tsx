@@ -4,8 +4,6 @@ import About from "@/components/sections/About";
 import Skills from "@/components/sections/Skills";
 import Portfolio from "@/components/sections/Portfolio";
 import VideoShowcase from "@/components/sections/VideoShowcase";
-import TeamMembers from "@/components/sections/TeamMembers";
-import Toolkit from "@/components/sections/Toolkit";
 import Contact from "@/components/sections/Contact";
 
 export default function Home() {
@@ -18,8 +16,6 @@ export default function Home() {
         <Skills />
         <Portfolio />
         <VideoShowcase />
-        <TeamMembers />
-        <Toolkit />
         <Contact />
       </main>
       <footer className="border-t border-border bg-background py-12 text-center text-muted-foreground transition-colors duration-300">

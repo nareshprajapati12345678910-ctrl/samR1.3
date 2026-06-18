@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
+import { X } from "lucide-react";
 import { FaFigma } from "react-icons/fa";
 import {
     Code2,
@@ -75,48 +77,90 @@ const tools = [
     },
 ];
 
-export default function Toolkit() {
-    return (
-        <section id="toolkit" className="bg-background py-24 transition-colors duration-300 md:py-32">
-            <div className="container mx-auto px-6 md:px-12">
-                <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.6 }}
-                    className="mx-auto mb-14 max-w-3xl text-center"
-                >
-                    <span className="mb-4 block text-sm font-bold uppercase tracking-[0.3em] text-muted-foreground">
-                        Tools We Use
-                    </span>
-                    <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
-                        Professional software and technologies powering our creative workflow.
-                    </h2>
-                </motion.div>
+interface ToolkitModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+}
 
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                    {tools.map((tool, index) => {
-                        const Icon = tool.icon;
-                        return (
-                            <motion.article
-                                key={tool.name}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, margin: "-80px" }}
-                                transition={{ duration: 0.5, delay: index * 0.04 }}
-                                whileHover={{ y: -6 }}
-                                className="group rounded-2xl border border-border bg-card/70 p-6 shadow-sm transition-all duration-300 hover:border-foreground/10 hover:bg-card"
-                            >
-                                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-foreground/5 text-foreground transition-colors duration-300 group-hover:bg-foreground group-hover:text-background">
-                                    <Icon className="h-6 w-6" />
-                                </div>
-                                <h3 className="mb-2 text-xl font-semibold text-foreground">{tool.name}</h3>
-                                <p className="text-sm leading-6 text-muted-foreground">{tool.description}</p>
-                            </motion.article>
-                        );
-                    })}
-                </div>
-            </div>
-        </section>
+export default function Toolkit({ isOpen, onClose }: ToolkitModalProps) {
+    useEffect(() => {
+        if (!isOpen) return;
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                onClose();
+            }
+        };
+
+        window.addEventListener("keydown", handleKeyDown);
+        return () => window.removeEventListener("keydown", handleKeyDown);
+    }, [isOpen, onClose]);
+
+    return (
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-3 backdrop-blur-xl sm:p-6"
+                    onClick={onClose}
+                >
+                    <motion.div
+                        initial={{ y: 50, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        exit={{ y: 50, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: "easeOut" }}
+                        className="relative w-full max-w-7xl overflow-hidden rounded-[32px] border border-white/10 bg-[#0b0b0d]/90 shadow-2xl shadow-black/40"
+                        onClick={(e) => e.stopPropagation()}
+                        role="dialog"
+                        aria-modal="true"
+                    >
+                        <button
+                            type="button"
+                            aria-label="Close toolkit modal"
+                            onClick={onClose}
+                            className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-foreground backdrop-blur transition hover:bg-white/10"
+                        >
+                            <X className="h-5 w-5" />
+                        </button>
+
+                        <div className="max-h-[92vh] overflow-y-auto px-6 pb-10 pt-16 sm:px-8 lg:px-10">
+                            <div className="mx-auto mb-10 max-w-3xl text-center">
+                                <span className="mb-4 block text-sm font-bold uppercase tracking-[0.3em] text-muted-foreground">
+                                    Tools We Use
+                                </span>
+                                <h2 className="font-serif text-4xl font-bold leading-tight text-foreground md:text-5xl">
+                                    Professional software and technologies powering our creative workflow.
+                                </h2>
+                            </div>
+
+                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                                {tools.map((tool, index) => {
+                                    const Icon = tool.icon;
+                                    return (
+                                        <motion.article
+                                            key={tool.name}
+                                            initial={{ opacity: 0, y: 18 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ duration: 0.4, delay: index * 0.03 }}
+                                            whileHover={{ y: -6 }}
+                                            className="group rounded-2xl border border-white/10 bg-white/5 p-6 shadow-sm transition-all duration-300 hover:border-white/15 hover:bg-white/8"
+                                        >
+                                            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-foreground/5 text-foreground transition-colors duration-300 group-hover:bg-foreground group-hover:text-background">
+                                                <Icon className="h-6 w-6" />
+                                            </div>
+                                            <h3 className="mb-2 text-xl font-semibold text-foreground">{tool.name}</h3>
+                                            <p className="text-sm leading-6 text-muted-foreground">{tool.description}</p>
+                                        </motion.article>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>
     );
 }

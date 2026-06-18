@@ -16,22 +16,22 @@ import {
 
 const tools = [
     {
-        name: "Adobe Premiere Pro",
-        description: "Precision editing, cinematic pacing, and polished storytelling.",
-        icon: Film,
-    },
-    {
-        name: "Adobe After Effects",
-        description: "Motion design, transitions, and high-end visual effects.",
-        icon: Sparkles,
-    },
-    {
-        name: "DaVinci Resolve",
-        description: "Color grading, finishing, and professional post-production control.",
+        name: "Davinci Resolve Studio",
+        description: "Professional-grade video production software built for creators who demand precision.",
         icon: Palette,
     },
     {
-        name: "Photoshop",
+        name: "Provide color grading",
+        description: "Vintage and modern color grading techniques for cinematic storytelling.",
+        icon: Sparkles,
+    },
+    {
+        name: "Podcast production",
+        description: "nhances clarity, engagement, and your brand's voice.",
+        icon: Film,
+    },
+    {
+        name: "Ads and social media content",
         description: "Retouching, compositing, and detailed visual refinement.",
         icon: Wand2,
     },
@@ -41,40 +41,12 @@ const tools = [
         icon: PenTool,
     },
     {
-        name: "Blender",
-        description: "3D motion graphics, environments, and product visuals.",
-        icon: Layers3,
-    },
-    {
-        name: "Figma",
-        description: "Rapid prototyping, UI design, and collaborative creative workflows.",
-        icon: FaFigma,
-    },
-    {
-        name: "VS Code",
-        description: "Clean development workflow for modern web experiences.",
-        icon: Code2,
-    },
-    {
-        name: "React",
-        description: "Interactive interfaces built for performance and scalability.",
-        icon: MonitorSmartphone,
-    },
-    {
-        name: "TypeScript",
-        description: "Reliable, scalable logic and cleaner application architecture.",
+        name: "Narrative Pacing",
+        description: "Rhythmic cutting, tension building, and structural storytelling.",
         icon: Gauge,
-    },
-    {
-        name: "Tailwind CSS",
-        description: "Fast, flexible styling for premium visual polish.",
-        icon: Sparkles,
-    },
-    {
-        name: "Framer Motion",
-        description: "Smooth animations, motion storytelling, and elegant micro-interactions.",
-        icon: Layers3,
-    },
+    }
+
+
 ];
 
 interface ToolkitModalProps {

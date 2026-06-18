@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, Moon, Sun, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "next-themes";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -14,11 +15,15 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
+
+    setMounted(true);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -32,39 +37,63 @@ export default function Navbar() {
     }
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "bg-white/90 backdrop-blur-md border-b border-border py-4" : "bg-transparent py-6"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+          ? "bg-background/90 backdrop-blur-md border-b border-border py-4"
+          : "bg-transparent py-6"
         }`}
     >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
+      <div className="container mx-auto flex items-center justify-between px-6 md:px-12">
         <Link href="/">
-          <span className="font-serif text-2xl font-bold tracking-tight text-foreground cursor-pointer">
+          <span className="cursor-pointer font-serif text-2xl font-bold tracking-tight text-foreground">
             samR1
           </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={(e) => scrollTo(e, link.href)}
-              className="text-sm font-medium text-secondary-foreground hover:text-foreground transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
-        </nav>
+        <div className="flex items-center gap-3">
+          {/* Desktop Nav */}
+          <nav className="hidden items-center gap-6 lg:flex">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={(e) => scrollTo(e, link.href)}
+                className="text-sm font-medium text-secondary-foreground transition-colors duration-300 hover:text-foreground"
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="lg:hidden text-foreground p-2"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Theme Toggle */}
+          <button
+            type="button"
+            aria-label="Toggle color theme"
+            onClick={toggleTheme}
+            className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary"
+          >
+            {mounted && theme === "dark" ? (
+              <Sun className="h-4 w-4" />
+            ) : (
+              <Moon className="h-4 w-4" />
+            )}
+          </button>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            type="button"
+            aria-label="Toggle navigation menu"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/80 p-2 text-foreground transition-colors duration-300 hover:bg-secondary lg:hidden"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -74,18 +103,20 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-white border-b border-border shadow-lg p-6 lg:hidden flex flex-col space-y-4"
+            className="absolute top-full left-0 right-0 border-b border-border bg-background/95 p-6 shadow-lg backdrop-blur-md lg:hidden"
           >
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => scrollTo(e, link.href)}
-                className="text-lg font-medium text-foreground hover:text-muted-foreground transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
+            <div className="flex flex-col space-y-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={(e) => scrollTo(e, link.href)}
+                  className="text-lg font-medium text-foreground transition-colors duration-300 hover:text-muted-foreground"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

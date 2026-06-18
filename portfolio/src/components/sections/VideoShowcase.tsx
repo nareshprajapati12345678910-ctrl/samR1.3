@@ -1,10 +1,9 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 
 export default function VideoShowcase() {
   return (
-    <section id="showcase" className="py-24 md:py-32 bg-foreground text-background">
+    <section id="showcase" className="bg-background py-24 text-foreground transition-colors duration-300 md:py-32 dark:bg-[#0A0A0A]">
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -24,7 +23,7 @@ export default function VideoShowcase() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-5xl mx-auto"
         >
-          <div className="aspect-video bg-zinc-900 border border-zinc-800 relative flex items-center justify-center group cursor-pointer overflow-hidden">
+          <div className="relative aspect-video overflow-hidden border border-border bg-card/80 group flex cursor-pointer items-center justify-center">
             {/* Placeholder for actual iframe embed */}
             <div className="absolute inset-0 bg-[url('/images/hero-bg.png')] bg-cover bg-center opacity-40 grayscale mix-blend-screen transition-transform duration-1000 group-hover:scale-105"></div>
 

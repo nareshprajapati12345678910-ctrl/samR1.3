@@ -57,7 +57,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-white">
+    <section id="contact" className="bg-background py-24 transition-colors duration-300 md:py-32">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           <motion.div
@@ -100,15 +100,15 @@ export default function Contact() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6 bg-secondary/30 p-8 md:p-10 border border-border">
+            <form onSubmit={handleSubmit} className="space-y-6 border border-border bg-card p-8 md:p-10">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2">Name</label>
-                <Input id="name" name="name" required className="rounded-none border-border bg-white h-12" placeholder="Jane Doe" />
+                <Input id="name" name="name" required className="h-12 rounded-none border-border bg-background" placeholder="Jane Doe" />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2">Email</label>
-                <Input id="email" name="email" type="email" required className="rounded-none border-border bg-white h-12" placeholder="jane@example.com" />
+                <Input id="email" name="email" type="email" required className="h-12 rounded-none border-border bg-background" placeholder="jane@example.com" />
               </div>
 
               <div>
@@ -116,7 +116,7 @@ export default function Contact() {
                 <select
                   id="project"
                   name="project"
-                  className="flex h-12 w-full border border-border bg-white px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 rounded-none"
+                  className="flex h-12 w-full rounded-none border border-border bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                   required
                 >
                   <option value="" disabled>Select an option</option>
@@ -134,7 +134,7 @@ export default function Contact() {
                   id="message"
                   name="message"
                   required
-                  className="rounded-none border-border bg-white min-h-[120px] resize-none"
+                  className="min-h-[120px] resize-none rounded-none border-border bg-background"
                   placeholder="Tell me about your project, timeline, and goals..."
                 />
               </div>

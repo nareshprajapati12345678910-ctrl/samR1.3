@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -35,7 +34,7 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="py-24 md:py-32 bg-white">
+    <section id="portfolio" className="bg-background py-24 transition-colors duration-300 md:py-32">
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -60,10 +59,10 @@ export default function Portfolio() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group cursor-pointer"
             >
-              <div className="overflow-hidden bg-secondary mb-6 relative aspect-video">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
+              <div className="relative mb-6 aspect-video overflow-hidden bg-secondary/80">
+                <img
+                  src={project.image}
+                  alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   loading="lazy"
                 />

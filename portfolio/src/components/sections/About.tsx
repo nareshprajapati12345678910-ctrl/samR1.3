@@ -1,11 +1,10 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 export default function About() {
   return (
-    <section id="about" className="py-24 md:py-32 bg-white">
+    <section id="about" className="bg-background py-24 transition-colors duration-300 md:py-32">
       <div className="container mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-24">
           <div className="lg:col-span-5">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -34,7 +33,7 @@ export default function About() {
               <p className="text-xl leading-relaxed text-foreground font-medium mb-8">
                 Editing is an invisible art. When done perfectly, the audience never notices the cuts—they only feel the emotion.
               </p>
-              
+
               <p className="mb-6">
                 As a DaVinci Resolve specialist and professional video editor, I don't just assemble footage. I construct narratives. Whether it's a high-impact commercial, an atmospheric brand film, or engaging social media content, my approach is rooted in intentionality. Every frame must earn its place.
               </p>

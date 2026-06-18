@@ -65,7 +65,7 @@ const cardVariants = {
 
 export default function TeamMembers() {
     return (
-        <section id="team" className="py-24 md:py-32 bg-white">
+        <section id="team" className="bg-background py-24 transition-colors duration-300 md:py-32">
             <div className="container mx-auto px-6 md:px-12">
                 {/* Section Header */}
                 <motion.div

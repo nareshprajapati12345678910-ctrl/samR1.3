@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 const skills = [
@@ -12,7 +11,7 @@ const skills = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 md:py-32 bg-secondary/50 border-y border-border">
+    <section id="skills" className="border-y border-border bg-secondary/50 py-24 transition-colors duration-300 md:py-32">
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,7 +32,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 border border-border group hover:border-foreground/20 transition-colors"
+              className="group border border-border bg-card p-8 transition-all duration-300 hover:border-foreground/20"
             >
               <div className="text-xs font-semibold tracking-wider text-muted-foreground uppercase mb-4">
                 {skill.category}

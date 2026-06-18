@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
 import Portfolio from "@/components/sections/Portfolio";
 import VideoShowcase from "@/components/sections/VideoShowcase";
 import Contact from "@/components/sections/Contact";
@@ -11,7 +10,6 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <About />
         <Portfolio />
         <VideoShowcase />
         <Contact />

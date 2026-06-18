@@ -6,7 +6,6 @@ import { useTheme } from "next-themes";
 import TeamMembers from "@/components/sections/TeamMembers";
 
 const navLinks = [
-  { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Portfolio", href: "#portfolio" },
   { name: "Showcase", href: "#showcase" },

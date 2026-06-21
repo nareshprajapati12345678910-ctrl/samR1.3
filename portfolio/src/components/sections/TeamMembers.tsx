@@ -8,11 +8,11 @@ interface TeamModalProps {
 }
 
 const teamImages = [
-    "/images/team/Aniket.png",
-    "/images/team/Naresh.png",
     "/images/team/Sameer.png",
-    "/images/team/Saniya.png",
+    "/images/team/Naresh.png",
     "/images/team/Sujal.png",
+    "/images/team/Saniya.png",
+    "/images/team/Aniket.png",
 ];
 
 export default function TeamMembers({ isOpen, onClose }: TeamModalProps) {

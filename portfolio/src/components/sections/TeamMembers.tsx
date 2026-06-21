@@ -1,12 +1,19 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 import { X } from "lucide-react";
-import teamImage from "@/assets/team.svg";
 
 interface TeamModalProps {
     isOpen: boolean;
     onClose: () => void;
 }
+
+const teamImages = [
+    "/images/team/Aniket.png",
+    "/images/team/Naresh.png",
+    "/images/team/Sameer.png",
+    "/images/team/Saniya.png",
+    "/images/team/Sujal.png",
+];
 
 export default function TeamMembers({ isOpen, onClose }: TeamModalProps) {
     useEffect(() => {
@@ -53,11 +60,17 @@ export default function TeamMembers({ isOpen, onClose }: TeamModalProps) {
                         </button>
 
                         <div className="max-h-[92vh] overflow-auto">
-                            <img
-                                src={teamImage}
-                                alt="Full team preview"
-                                className="h-auto w-full object-contain"
-                            />
+                            <div className="space-y-4 p-3 sm:p-6">
+                                {teamImages.map((image, index) => (
+                                    <img
+                                        key={image}
+                                        src={image}
+                                        alt={`Team member ${index + 1}`}
+                                        loading="lazy"
+                                        className="mx-auto h-auto w-full max-w-4xl rounded-2xl object-contain"
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </motion.div>
                 </motion.div>

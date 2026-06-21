@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
+import { motion } from "framer-motion"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
@@ -41,12 +42,37 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+  ({ className, variant, size, asChild = false, onMouseMove, onMouseLeave, ...props }, ref) => {
+    const Comp = asChild ? Slot : motion.button
+    const [tilt, setTilt] = React.useState({ x: 0, y: 0 })
+
+    const handleMouseMove = (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+        return
+      }
+
+      const rect = event.currentTarget.getBoundingClientRect()
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 8
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 8
+      setTilt({ x: x * 0.35, y: y * 0.35 })
+      onMouseMove?.(event)
+    }
+
+    const handleMouseLeave = (event: React.MouseEvent<HTMLButtonElement>) => {
+      setTilt({ x: 0, y: 0 })
+      onMouseLeave?.(event)
+    }
+
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        whileHover={{ scale: 1.03, y: -1 }}
+        whileTap={{ scale: 0.97 }}
+        animate={{ x: tilt.x, y: tilt.y }}
+        transition={{ type: "spring", stiffness: 300, damping: 22, mass: 0.6 }}
         {...props}
       />
     )

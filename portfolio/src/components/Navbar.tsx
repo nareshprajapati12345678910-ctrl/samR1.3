@@ -74,14 +74,16 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <nav className="hidden items-center gap-6 lg:flex">
               {navLinks.map((link) => (
-                <a
+                <motion.a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => scrollTo(e, link.href)}
+                  whileHover={{ y: -1 }}
+                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                   className="text-sm font-medium text-secondary-foreground transition-colors duration-300 hover:text-foreground"
                 >
                   {link.name}
-                </a>
+                </motion.a>
               ))}
             </nav>
 
@@ -119,14 +121,16 @@ export default function Navbar() {
             >
               <div className="flex flex-col space-y-4">
                 {navLinks.map((link) => (
-                  <a
+                  <motion.a
                     key={link.name}
                     href={link.href}
                     onClick={(e) => scrollTo(e, link.href)}
+                    whileHover={{ x: 4 }}
+                    transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                     className="text-lg font-medium text-foreground transition-colors duration-300 hover:text-muted-foreground"
                   >
                     {link.name}
-                  </a>
+                  </motion.a>
                 ))}
               </div>
             </motion.div>

@@ -73,24 +73,52 @@ export default function Contact() {
             </p>
 
             <div className="space-y-6">
-              <a href="mailto:samr1films@gmail.com" className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors">
+              <motion.a
+                href="mailto:samr1films@gmail.com"
+                whileHover={{ x: 3 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-center gap-4 group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors"
+                >
                   <Mail size={18} />
-                </div>
+                </motion.div>
                 <span className="text-lg font-medium">samr1films@gmail.com</span>
-              </a>
-              <a href="https://www.instagram.com/samr1.films" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors">
+              </motion.a>
+              <motion.a
+                href="https://www.instagram.com/samr1.films"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ x: 3 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-center gap-4 group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors"
+                >
                   <FaInstagram size={18} />
-                </div>
+                </motion.div>
                 <span className="text-lg font-medium">@samr1.films</span>
-              </a>
-              <a href="https://wa.me/919511209061" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group">
-                <div className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors">
+              </motion.a>
+              <motion.a
+                href="https://wa.me/919511209061"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ x: 3 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-center gap-4 group"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -1 }}
+                  className="w-12 h-12 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors"
+                >
                   <MessageCircle size={18} />
-                </div>
+                </motion.div>
                 <span className="text-lg font-medium">WhatsApp</span>
-              </a>
+              </motion.a>
             </div>
           </motion.div>
 

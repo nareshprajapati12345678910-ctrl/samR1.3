@@ -29,16 +29,19 @@ export default function SpecWork() {
 
           <div className="flex flex-wrap gap-4">
             {filters.map(filter => (
-              <button
+              <motion.button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
+                whileHover={{ y: -1, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
                 className={`btn-animate text-sm font-medium px-4 py-2 border transition-all duration-300 ${activeFilter === filter
                   ? "bg-foreground text-background border-foreground shadow-[0_10px_28px_-14px_hsl(var(--foreground)/0.45)]"
                   : "bg-transparent text-secondary-foreground border-border hover:border-foreground/30 hover:bg-secondary/50"
                   }`}
               >
                 {filter}
-              </button>
+              </motion.button>
             ))}
           </div>
         </motion.div>
@@ -51,12 +54,17 @@ export default function SpecWork() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                whileHover={{ y: -6, scale: 1.01 }}
                 key={spec.id}
                 className="group cursor-pointer"
               >
                 <div className="aspect-[4/5] bg-secondary border border-border flex items-center justify-center p-6 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                  <motion.div
+                    initial={false}
+                    whileHover={{ opacity: 1 }}
+                    className="absolute inset-0 bg-foreground/5 opacity-0 transition-opacity duration-500"
+                  />
                   <div className="text-center relative z-10">
                     <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground mb-2 block">
                       {spec.type}

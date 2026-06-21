@@ -120,13 +120,14 @@
   .btn-animate {
     position: relative;
     overflow: hidden;
-    transform: translateZ(0);
+    transform: translate3d(0, 0, 0);
+    will-change: transform, box-shadow;
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease,
-      background-color 0.3s ease,
-      color 0.3s ease,
-      border-color 0.3s ease;
+      transform 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      color 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 0.28s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .btn-animate::after {
@@ -137,25 +138,27 @@
       110deg,
       transparent 0%,
       transparent 30%,
-      rgba(255, 255, 255, 0.08) 48%,
+      rgba(255, 255, 255, 0.1) 48%,
       transparent 65%,
       transparent 100%
     );
     transform: translateX(-120%);
-    transition: transform 0.7s ease;
+    transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
     pointer-events: none;
   }
 
   .btn-animate:hover {
-    transform: translateY(-2px) scale(1.01);
-    box-shadow: 0 12px 30px -14px hsl(var(--foreground) / 0.22);
+    box-shadow: 0 16px 32px -18px hsl(var(--foreground) / 0.28);
   }
 
   .btn-animate:hover::after {
     transform: translateX(120%);
   }
 
-  .btn-animate:active {
-    transform: translateY(0) scale(0.98);
+  @media (prefers-reduced-motion: reduce) {
+    .btn-animate,
+    .btn-animate::after {
+      transition: none !important;
+    }
   }
 }

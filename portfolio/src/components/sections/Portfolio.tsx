@@ -56,17 +56,24 @@ export default function Portfolio() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -6 }}
               className="group cursor-pointer"
             >
               <div className="relative mb-6 aspect-video overflow-hidden bg-secondary/80">
-                <img
+                <motion.img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  whileHover={{ scale: 1.04 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
+                <motion.div
+                  initial={false}
+                  whileHover={{ opacity: 1 }}
+                  className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"
+                />
               </div>
               <div className="flex justify-between items-start">
                 <div>
@@ -80,9 +87,13 @@ export default function Portfolio() {
                     {project.description}
                   </p>
                 </div>
-                <div className="w-10 h-10 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors">
+                <motion.div
+                  whileHover={{ x: 3 }}
+                  transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors"
+                >
                   <ArrowRight size={16} />
-                </div>
+                </motion.div>
               </div>
             </motion.div>
           ))}

@@ -32,9 +32,9 @@ export default function SpecWork() {
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
-                className={`text-sm font-medium px-4 py-2 border transition-colors ${activeFilter === filter
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-transparent text-secondary-foreground border-border hover:border-foreground/30"
+                className={`btn-animate text-sm font-medium px-4 py-2 border transition-all duration-300 ${activeFilter === filter
+                  ? "bg-foreground text-background border-foreground shadow-[0_10px_28px_-14px_hsl(var(--foreground)/0.45)]"
+                  : "bg-transparent text-secondary-foreground border-border hover:border-foreground/30 hover:bg-secondary/50"
                   }`}
               >
                 {filter}

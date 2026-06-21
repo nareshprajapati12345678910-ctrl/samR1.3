@@ -89,7 +89,7 @@ export default function Navbar() {
               type="button"
               aria-label="Toggle color theme"
               onClick={toggleTheme}
-              className="relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-secondary"
+              className="btn-animate relative inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-sm hover:-translate-y-0.5 hover:bg-secondary"
             >
               {mounted && theme === "dark" ? (
                 <Sun className="h-4 w-4" />
@@ -101,7 +101,7 @@ export default function Navbar() {
             <button
               type="button"
               aria-label="Toggle navigation menu"
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/80 p-2 text-foreground transition-colors duration-300 hover:bg-secondary lg:hidden"
+              className="btn-animate inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/80 p-2 text-foreground hover:bg-secondary lg:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
